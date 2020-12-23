@@ -6,8 +6,9 @@ efficient and no dependencies.
 Only one method is provided;
 ```js
 const csv = 'Name,Age,Location\nDom,26,Sydney\nSteve,30,New York';
-parseCSV(csv, function(line) {
-  console.log(line.name);//Dom then Steve
+parseCSV(csv, function(headers, line, index) {
+  console.log(index, '-', line[headers.indexOf('Name')]);//1 - Dom
+  return true;//Return false to break loop
 })
 ```
 To stay efficient we ask for a callback that is fired for every line parsed.
